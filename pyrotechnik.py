@@ -10,6 +10,7 @@ cable_width, cable_height = canvas_width - (time_width + 50), 20
 padding_bottom = 2
 
 time_element = 0
+update_time_pointer = 0
 time = 15 + 1
 
 lives_element = 0
@@ -25,18 +26,7 @@ def update_time():
     canvas.delete(time_element)
 
     if time <= 0:
-        canvas.delete("all")
-
-        canvas.after_cancel(update_time_pointer)
-        canvas.unbind_all("<Button-1>")
-
-        canvas.create_text(
-            canvas_width / 2,
-            canvas_height / 2,
-            text="Prehral si",
-            fill=red,
-            font="Arial 50 bold",
-        )
+        loss()
     else:
         time_element = canvas.create_text(
             canvas_width - 50,
@@ -61,19 +51,7 @@ def update_lives():
     canvas.delete(lives_element)
 
     if lives == 0:
-        canvas.delete("all")
-
-        canvas.after_cancel(update_time_pointer)
-        canvas.unbind_all("<Button-1>")
-
-        canvas.create_text(
-            canvas_width / 2,
-            canvas_height / 2,
-            text="Prehral si",
-            fill=red,
-            font="Arial 50 bold",
-        )
-
+        loss()
     else:
         lives_element = canvas.create_text(
             canvas_width - 50,
@@ -83,6 +61,26 @@ def update_lives():
             font="Arial 70 bold",
             anchor="e",
         )
+
+
+# -----------------------------
+
+
+def loss():
+    global update_time_pointer
+
+    canvas.delete("all")
+
+    canvas.after_cancel(update_time_pointer)
+    canvas.unbind_all("<Button-1>")
+
+    canvas.create_text(
+        canvas_width / 2,
+        canvas_height / 2,
+        text="Prehral si",
+        fill=red,
+        font="Arial 50 bold",
+    )
 
 
 # -----------------------------
