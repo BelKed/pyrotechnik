@@ -11,6 +11,8 @@ padding_bottom = 2
 time_element = 0
 time = 15 + 1
 
+# -----------------------------
+
 
 def update_time():
     global time_element, time
@@ -28,6 +30,13 @@ def update_time():
     )
 
     canvas.after(1000, update_time)
+
+
+# -----------------------------
+
+
+def clicked(event):
+    print(event.x, event.y)
 
 
 # -----------------------------
@@ -59,6 +68,7 @@ for i in range(cables_count):
         width=0,
     )
 
+canvas.bind_all("<Button-1>", clicked)
 update_time()
 
 canvas.mainloop()
