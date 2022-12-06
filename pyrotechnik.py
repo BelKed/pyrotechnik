@@ -4,9 +4,33 @@ canvas_width, canvas_height = 800, 400
 colors = ("red", "green", "blue", "yellow", "black", "violet", "gray", "pink")
 red, green, blue, gray = "#e36666", "#76e2af", "#32b1d3", "#282c34"
 
-score_width = 200
-cable_width, cable_height = canvas_width - (score_width + 50), 20
+time_width = 200
+cable_width, cable_height = canvas_width - (time_width + 50), 20
 padding_bottom = 2
+
+time_element = 0
+time = 15 + 1
+
+
+def update_time():
+    global time_element, time
+
+    time -= 1
+    canvas.delete(time_element)
+
+    time_element = canvas.create_text(
+        canvas_width - 50,
+        canvas_height / 2 + 50,
+        text=time,
+        fill=red,
+        font="Arial 70 bold",
+        anchor="e",
+    )
+
+    canvas.after(1000, update_time)
+
+
+# -----------------------------
 
 while True:
     cables_count = input("Zadaj počet káblikov (5 – 8): ")
@@ -21,9 +45,6 @@ canvas.pack()
 
 canvas.create_text(canvas_width / 2, 45, text="PYROTECHNIK", fill=blue, font="Arial 30 bold")
 canvas.create_text(canvas_width / 2, 75, text="Označ správny káblik", fill=green, font="Arial 20")
-score = canvas.create_text(
-    canvas_width - 50, canvas_height / 2 + 50, text="15", fill=red, font="Arial 70 bold", anchor="e"
-)
 
 x = 50 + cable_width / 2
 y = (canvas_height - cables_count * cable_height) / 2 + 50
@@ -37,5 +58,7 @@ for i in range(cables_count):
         fill=colors[i],
         width=0,
     )
+
+update_time()
 
 canvas.mainloop()
