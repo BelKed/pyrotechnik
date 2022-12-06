@@ -1,6 +1,11 @@
 import random
 import tkinter
 
+
+# -----------------------------
+# |  Constants and variables  |
+# -----------------------------
+
 canvas_width, canvas_height = 800, 400
 colors = ("red", "green", "blue", "yellow", "black", "violet", "gray", "pink")
 red, green, blue, gray = "#e36666", "#76e2af", "#32b1d3", "#282c34"
@@ -16,6 +21,9 @@ time = 15 + 1
 lives_element = 0
 lives = 3 + 1
 
+
+# -----------------------------
+# |      Helper functions     |
 # -----------------------------
 
 
@@ -125,6 +133,8 @@ def clicked(event):
 
 
 # -----------------------------
+# |        Main program       |
+# -----------------------------
 
 while True:
     cables_count = input("Zadaj počet káblikov (5 – 8): ")
@@ -140,6 +150,7 @@ canvas.pack()
 canvas.create_text(canvas_width / 2, 45, text="PYROTECHNIK", fill=blue, font="Arial 30 bold")
 canvas.create_text(canvas_width / 2, 75, text="Označ správny káblik", fill=green, font="Arial 20")
 
+
 x = 50 + cable_width / 2
 y = (canvas_height - cables_count * cable_height) / 2 + 50
 
@@ -152,6 +163,7 @@ for i in range(cables_count):
         fill=colors[i],
         width=0,
     )
+
 
 correct_cable = random.randrange(cables_count)
 print("Correct cable:", correct_cable)
