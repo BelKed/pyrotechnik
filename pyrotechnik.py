@@ -65,13 +65,19 @@ def update_lives():
 # -----------------------------
 
 
-def loss():
+def cancel_events():
     global update_time_pointer
-
-    canvas.delete("all")
 
     canvas.after_cancel(update_time_pointer)
     canvas.unbind_all("<Button-1>")
+
+
+# -----------------------------
+
+
+def loss():
+    cancel_events()
+    canvas.delete("all")
 
     canvas.create_text(
         canvas_width / 2,
@@ -79,6 +85,21 @@ def loss():
         text="Prehral si",
         fill=red,
         font="Arial 50 bold",
+    )
+
+
+# -----------------------------
+
+
+def win():
+    cancel_events()
+
+    canvas.create_text(
+        canvas_width / 2,
+        canvas_height - 50,
+        text="Vyhral si",
+        fill=green,
+        font="Arial 30 bold",
     )
 
 
@@ -98,16 +119,7 @@ def clicked(event):
             cable_y += cable_height
 
         if i == correct_cable:
-            canvas.create_text(
-                canvas_width / 2,
-                canvas_height - 50,
-                text="Vyhral si",
-                fill=green,
-                font="Arial 30 bold",
-            )
-
-            canvas.after_cancel(update_time_pointer)
-            canvas.unbind_all("<Button-1>")
+            win()
         else:
             update_lives()
 
