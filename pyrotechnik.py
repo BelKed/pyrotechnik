@@ -24,6 +24,20 @@ def update_time():
     time -= 1
     canvas.delete(time_element)
 
+    if time <= 0:
+        canvas.delete("all")
+
+        canvas.after_cancel(update_time_pointer)
+        canvas.unbind_all("<Button-1>")
+
+        canvas.create_text(
+            canvas_width / 2,
+            canvas_height / 2,
+            text="Prehral si",
+            fill=red,
+            font="Arial 50 bold",
+        )
+
     time_element = canvas.create_text(
         canvas_width - 50,
         canvas_height / 2 + 50,
@@ -49,15 +63,17 @@ def update_lives():
     if lives == 0:
         canvas.delete("all")
 
+        canvas.after_cancel(update_time_pointer)
+        canvas.unbind_all("<Button-1>")
+
         canvas.create_text(
             canvas_width / 2,
             canvas_height / 2,
             text="Prehral si",
             fill=red,
-            font="Arial 30 bold",
+            font="Arial 50 bold",
         )
 
-        canvas.after_cancel(update_time_pointer)
     else:
         lives_element = canvas.create_text(
             canvas_width - 50,
@@ -81,11 +97,8 @@ def clicked(event):
 
         for i in range(cables_count):
             if cable_y <= y <= cable_y + cable_height - padding_bottom:
-                print("clicked", i)
                 break
             cable_y += cable_height
-
-        print("a")
 
         if i == correct_cable:
             canvas.create_text(
@@ -97,6 +110,7 @@ def clicked(event):
             )
 
             canvas.after_cancel(update_time_pointer)
+            canvas.unbind_all("<Button-1>")
         else:
             update_lives()
 
