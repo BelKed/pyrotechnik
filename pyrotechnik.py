@@ -57,17 +57,6 @@ def update_lives():
     lives -= 1
     if lives <= 0:
         loss()
-    else:
-        canvas.delete(lives_element)
-
-        lives_element = canvas.create_text(
-            canvas_width - 50,
-            canvas_height / 2 - 50,
-            text=lives,
-            fill=red,
-            font="Arial 70 bold",
-            anchor="e",
-        )
 
 
 # -----------------------------
@@ -90,7 +79,7 @@ def loss():
     canvas.create_text(
         canvas_width / 2,
         canvas_height / 2,
-        text="Prehral si",
+        text="BOOOOOOOM",
         fill=red,
         font="Arial 50 bold",
     )
@@ -166,7 +155,6 @@ for i in range(cables_count):
 
 
 correct_cable = random.randrange(cables_count)
-print("Correct cable:", correct_cable)
 
 canvas.bind_all("<Button-1>", clicked)
 
