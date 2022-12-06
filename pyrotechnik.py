@@ -23,11 +23,11 @@ def update_time():
     global time_element, time, update_time_pointer
 
     time -= 1
-    canvas.delete(time_element)
-
     if time <= 0:
         loss()
     else:
+        canvas.delete(time_element)
+
         time_element = canvas.create_text(
             canvas_width - 50,
             canvas_height / 2 + 50,
@@ -47,12 +47,11 @@ def update_lives():
     global lives_element, lives
 
     lives -= 1
-
-    canvas.delete(lives_element)
-
-    if lives == 0:
+    if lives <= 0:
         loss()
     else:
+        canvas.delete(lives_element)
+
         lives_element = canvas.create_text(
             canvas_width - 50,
             canvas_height / 2 - 50,
