@@ -1,10 +1,12 @@
 import tkinter
 
-canvas_width, canvas_height = 800, 600
+canvas_width, canvas_height = 800, 400
 colors = ("red", "green", "blue", "yellow", "black", "violet", "gray", "pink")
-green, blue, gray = "#76e2af", "#32b1d3", "#282c34"
+red, green, blue, gray = "#e36666", "#76e2af", "#32b1d3", "#282c34"
 
-cable_width, cable_height = canvas_width - 50, 10
+score_width = 200
+cable_width, cable_height = canvas_width - (score_width + 50), 20
+padding_bottom = 2
 
 while True:
     cables_count = input("Zadaj počet káblikov (5 – 8): ")
@@ -19,17 +21,21 @@ canvas.pack()
 
 canvas.create_text(canvas_width / 2, 45, text="PYROTECHNIK", fill=blue, font="Arial 30 bold")
 canvas.create_text(canvas_width / 2, 75, text="Označ správny káblik", fill=green, font="Arial 20")
+score = canvas.create_text(
+    canvas_width - 50, canvas_height / 2 + 50, text="15", fill=red, font="Arial 70 bold", anchor="e"
+)
 
-x = canvas_width / 2
-y = (canvas_height - cables_count * cable_height) / 2
+x = 50 + cable_width / 2
+y = (canvas_height - cables_count * cable_height) / 2 + 50
 
 for i in range(cables_count):
     canvas.create_rectangle(
         x - cable_width / 2,
-        y - cable_height / 2 + i * cable_height,
+        y - cable_height / 2 + (i + 1) * cable_height,
         x + cable_width / 2,
-        y + cable_height / 2 + i * cable_height,
+        y + cable_height / 2 + (i + 1) * cable_height - padding_bottom,
         fill=colors[i],
+        width=0,
     )
 
 canvas.mainloop()
