@@ -1,3 +1,4 @@
+import random
 import tkinter
 
 canvas_width, canvas_height = 800, 400
@@ -48,6 +49,17 @@ def clicked(event):
                 break
             cable_y += cable_height
 
+        print("a")
+
+        if i == correct_cable:
+            canvas.create_text(
+                canvas_width / 2,
+                canvas_height - 50,
+                text="Vyhral si",
+                fill=green,
+                font="Arial 30 bold",
+            )
+
 
 # -----------------------------
 
@@ -77,6 +89,9 @@ for i in range(cables_count):
         fill=colors[i],
         width=0,
     )
+
+correct_cable = random.randrange(cables_count)
+print("Correct cable:", correct_cable)
 
 canvas.bind_all("<Button-1>", clicked)
 update_time()
