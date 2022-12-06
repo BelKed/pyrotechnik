@@ -37,17 +37,17 @@ def update_time():
             fill=red,
             font="Arial 50 bold",
         )
+    else:
+        time_element = canvas.create_text(
+            canvas_width - 50,
+            canvas_height / 2 + 50,
+            text=time,
+            fill=red,
+            font="Arial 70 bold",
+            anchor="e",
+        )
 
-    time_element = canvas.create_text(
-        canvas_width - 50,
-        canvas_height / 2 + 50,
-        text=time,
-        fill=red,
-        font="Arial 70 bold",
-        anchor="e",
-    )
-
-    update_time_pointer = canvas.after(1000, update_time)
+        update_time_pointer = canvas.after(1000, update_time)
 
 
 # -----------------------------
