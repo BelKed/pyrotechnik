@@ -36,7 +36,17 @@ def update_time():
 
 
 def clicked(event):
-    print(event.x, event.y)
+    x = event.x
+    y = event.y
+
+    if 50 <= x <= cable_width + 50:
+        cable_y = (canvas_height - (cables_count - 1) * cable_height) / 2 + 50
+
+        for i in range(cables_count):
+            if cable_y <= y <= cable_y + cable_height - padding_bottom:
+                print("clicked", i)
+                break
+            cable_y += cable_height
 
 
 # -----------------------------
