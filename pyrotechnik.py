@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 # -----------------------------
 
 canvas_width = 800
-colors = ("red", "green", "blue", "yellow", "black", "violet", "gray", "pink")
+colors = ("#ff6666", "#ffba66", "#faff66", "#80ff66", "#66f2ff", "#66a1ff", "#7d66ff", "#ff66b3")
 red, green, blue, gray = "#e36666", "#76e2af", "#32b1d3", "#282c34"
 
 cable_width = canvas_width - 50
